@@ -29,7 +29,7 @@
 
 		async function Roar() {
 			ip = $("#misty-robot-ip-address").val();
-
+			
 			//Create socket for listening to sensors
 			lightSocket = new LightSocket(ip);
 			lightSocket.Connect();
@@ -44,6 +44,8 @@
 
 		async function roarStep(data, lightClient, lightSocket) {
 			console.log("I see a face! " + data.message.distance)
+			lightClient.PostCommand("audio/play", "{\"AssetId\":\"roar.wav\"}");
+			//lightClient.PostCommand("audio/play", "{\"AssetId\":\"004-Sniff.wav\"}");
 			if (data.message.distance < 50) //Units?
 			{
 				lightClient.PostCommand("audio/play", "{\"AssetId\":\"Roar.wav\"}");
@@ -55,8 +57,8 @@
 
 </head>
 <body>
+		TESTING Misty's IP Address: <input id="misty-robot-ip-address" value="10.0.1.1">
 	<div>
-		Misty's IP Address: <input id="misty-robot-ip-address" value="10.0.1.1">
 		<p></p>
 		<button onclick="Roar()">Roar</button>
 	</div>
