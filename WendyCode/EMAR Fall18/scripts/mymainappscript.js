@@ -1,4 +1,9 @@
 
+
+// js for connecting to MISTY
+
+
+//variable set up
 var ipAddress  = document.getElementById("ip-address");
 var connect = document.getElementById("connect");
 var start = document.getElementById("start");

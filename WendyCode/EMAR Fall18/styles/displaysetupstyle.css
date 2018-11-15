@@ -1,0 +1,83 @@
+
+
+
+
+/* For the Display controls*/
+
+#mainDiv {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: #fff;
+	height: 300px;
+	width: 400px;
+	border: 2px red none;
+	margin: 20px;
+}
+
+div.wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: auto;
+	width: 100%;
+	border: 2px green none;
+}
+
+
+div.textInput {
+	display: flex;
+/* 	flex-direction: column; */
+	align-items: left;
+	justify-content: left;
+	height: auto;
+	width: 100%;
+	border: 2px green none;
+	padding: 30px 10px;
+	
+}
+
+#chosenText {
+	border: 2px green bold;
+	margin: 0px 10px;
+	
+}
+
+div.imageGallery{
+	display: flex;
+	flex-direction: column;
+	align-items: left;
+	justify-content: center;
+	height: auto;
+	width: 100%;
+	border: 2px green none;
+}
+
+
+canvas {
+	margin: 0px;
+	border: 2px gray solid;
+	height: 300px;
+	width: 400px;
+}
+
+
+.imgButton {
+    background-color: #000; /* black*/
+    border: none;
+    color: white;
+    padding: 1px 2px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+
+.chosenImages {
+	height:50px; 
+	width:80px;
+
+}

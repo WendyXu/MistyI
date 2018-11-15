@@ -2,30 +2,94 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Move - Find Face - Act</title>
+		<title>Misty EMAR  Setup and Control</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="../Tools/javascript/lightClient.js"></script>
-		<script src="../Tools/javascript/lightSocket.js"></script>
-		<link rel="stylesheet" href="style.css">
+		<script src="scripts/lightClient.js"></script>
+		<script src="scripts/lightSocket.js"></script>
+		<link rel="stylesheet" href="styles/mainstyle.css">
+        <link rel="stylesheet" href="styles/displaysetupstyle.css">
 	</head>
-	<body>
+	<body onload="loadImage()">
 		<div id="page-wrapper">
-			<h1>Move, Find a Face, Then Do Something</h1>
+			<h1>Misty EMAR  Setup and Control</h1>
 			<div>
 				<h3>Connect to Robot: </h3>
 				<input type="text" id="ip-address" placeholder="IP Address" required />
 					<button type="button" id="connect">Connect</button>
 			</div>
-			<h3>Command: </h3>
-			<div id="command">
-				<p>Have Misty turn in a circle, scan for faces, and play an audio file when a face is detected.</p>
+
+			<h3>Console: </h3>
+			<textarea id="results"></textarea>
+		
+		
+			<!-- Expression Generator/Setup -->
+			<h2>Expression Generator/Setup: </h2>
+            <div id="Expression Gen">
+            <div class="wrapper">
+                <div id="mainDiv">
+                            <img id="myImage" hidden onload="drawTextOnImage()">
+                            <!--Hidden for element grabbing -->
+
+                            <canvas id="mainCanvas"></canvas>
+
+                            <a id="download" download="myImage.jpg" href="" onclick="downloadImage(this);">Download image</a>
+                            
+                </div>
+			</div>
+            
+            <div>
+                <p> todo, show uploaded? (in remote control)</p>
+                
+                <input type="button" id="UploadToMisty" onclick="UploadToMisty()" value="UploadToMisty">
+                <input type="button" id="UploadToMisty" onclick="UploadToMisty()" value="Delete from misty">
+            </div>
+
+			<div class="textInput">
+                <input type="text" name="chosenText" id="chosenTextBox" value = "Add Text Here">
+                <input type="button" id="addTextButton" onclick="setText()" value="Add Text">
+                
+			</div>
+            
+            
+			<div class="imageGallery">
+                <div id="imageButtons">
+
+                    <img src="img/Hand.jpg" class="chosenImages" alt="" onclick="setImage(this)">
+                    <img src="img/mistyi_photo_closeup.jpg" class="chosenImages" alt="" onclick="setImage(this)">
+                    <img src="img/Hand.jpg" alt="" height="42" width="42">
+                    <img src="img/facetable.png" onclick="setImage(this)">
+                    
+                            
+                </div>
+			</div>
+            
+            </div>
+			
+			<!-- Face WoZ-->
+			<h2>Expression Display Control</h2>
+			
+			<!-- Movement WoZ-->
+			<h2>Movement Control</h2>
+            
+            <div id="command">
+				<p>Have Misty turn in a circle</p>
 				<button type="button" id="start">Start</button>
 				<button type="button" id="stop">Stop</button>
 			</div>
-			<h3>Console: </h3>
-			<textarea id="results"></textarea>
+		
+			<!-- Sample -->
+			<h2>MISC: </h2>
+			<!-- <h3>Command: </h3> -->
+			<!-- <div id="command"> -->
+				<!-- <p>Have Misty turn in a circle, scan for faces, and play an audio file when a face is detected.</p> -->
+				<!-- <button type="button" id="start">Start</button> -->
+				<!-- <button type="button" id="stop">Stop</button> -->
+			<!-- </div> -->
+			
+		
 		</div>
-		<footer>Background image: "All of us" wallpaper from Pottok.</footer>
-		<script src="app.js"></script>
+		<!-- SCRIPTS -->
+		<script src="scripts/mymainappscript.js"></script>
+		<script src="scripts/displaysetupscript.js"></script>
 	</body>
 </html>
