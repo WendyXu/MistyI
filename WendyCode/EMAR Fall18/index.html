@@ -12,14 +12,16 @@
 	<body onload="loadImage()">
 		<div id="page-wrapper">
 			<h1>Misty EMAR  Setup and Control</h1>
-			<div>
+            <p> Remember Misty must not be left unplugged with low battery. Battery needs to be above 7.5V for all motors to function. </p>
+			<!-- 192.168.2.13 -->
+            <div>
 				<h3>Connect to Robot: </h3>
 				<input type="text" id="ip-address" placeholder="IP Address" required />
 					<button type="button" id="connect">Connect</button>
 			</div>
 
-			<h3>Console: </h3>
-			<textarea id="results"></textarea>
+<!-- 			<h3>Console: </h3>
+			<textarea id="results"></textarea> -->
 		
 		
 			<!-- Expression Generator/Setup -->
@@ -54,9 +56,10 @@
 			<div class="imageGallery">
                 <div id="imageButtons">
 
-                    <img src="img/Hand.jpg" class="chosenImages" alt="" onclick="setImage(this)">
+                    <img src="img/raw/Angry.jpg" class="chosenImages" alt="" onclick="setImage(this)">
+                    <img src="img/raw/Love.jpg" class="chosenImages" alt="" onclick="setImage(this)">
+                    <img src="img/ContentMistyPicture_textup_blank.png" class="chosenImages" alt="" onclick="setImage(this)">
                     <img src="img/mistyi_photo_closeup.jpg" class="chosenImages" alt="" onclick="setImage(this)">
-                    <img src="img/Hand.jpg" alt="" height="42" width="42">
                     <img src="img/facetable.png" onclick="setImage(this)">
                     
                             
@@ -73,9 +76,13 @@
             
             <div id="command">
 				<p>Have Misty turn in a circle</p>
-				<button type="button" id="start">Start</button>
-				<button type="button" id="stop">Stop</button>
+				<button type="button" id="start">Start turning left </button>
+                <button type="button" id="right180" onclick="right180()" >Turn right 180</button>
+				<button type="button" id="stop">Stop moving</button>
 			</div>
+            
+            <h3>Console: </h3>
+			<textarea id="results"></textarea>
 		
 			<!-- Sample -->
 			<h2>MISC: </h2>

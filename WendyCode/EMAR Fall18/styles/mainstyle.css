@@ -4,23 +4,6 @@
   box-sizing: border-box;
 }
 
-button {
-  background: #808080;
-  border-radius: 3px;
-  border: none;
-  color: white;
-  display: inline-block;
-  font-size: 1em;
-  font-weight: bold;
-  margin: 0 0.25em;
-  padding: 0.5em 1em;
-}
-
-button:hover {
-  cursor: pointer;
-  opacity: 0.5;
-}
-
 footer {
   background: white;
   bottom: 1%;
@@ -65,10 +48,7 @@ textarea {
   width: 100%;
 }
 
-.button-div {
-  width: 100%;
-}
-
+/* General area */
 #command {
   background-color: #e5dfd7;
   font-family: Helvetica, Arial, sans-serif;
@@ -94,9 +74,31 @@ textarea {
   justify-content: center;
   
     
-    
 }
 
-#start {
+/* Motion Buttons */
+.button-div {
+  width: 100%;
+}
+
+/* #start {
   margin-left: 35%;
+}
+ */
+
+button {
+  background: #808080;
+  border-radius: 3px;
+  border: none;
+  color: white;
+  display: inline-block;
+  font-size: 1em;
+  font-weight: bold;
+  margin: 0.25em 0.25em;
+  padding: 0.5em 1em;
+}
+
+button:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }

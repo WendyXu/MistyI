@@ -31,7 +31,11 @@ var message = JSON.stringify(msg);
 var messageCount = 0;
 var socket;
 
+/////////////////////////////////////////
+////**** Function is called, return value will end up in var
+// Below trying out new way to do button clicks... 
 
+///////////////////IP Connect Remember to if (!ip) and send error message
 connect.onclick = function() {
   ip = validateIPAddress(ipAddress.value);
   if (!ip) {
@@ -45,20 +49,56 @@ connect.onclick = function() {
   });
 };
 
+function validateIPAddress(ip) {
+  var ipNumbers = ip.split(".");
+  var ipNums = new Array(4);
+  if (ipNumbers.length !== 4) {
+    return "";
+  }
+  for (let i = 0; i < 4; i++) {
+    ipNums[i] = parseInt(ipNumbers[i]);
+    if (ipNums[i] < 0 || ipNums[i] > 255) {
+    return "";
+    }
+  }
+  return ip;
+}
+
+////////////////////movement control
+
 start.onclick = function() {
   if (!ip) {
     printToScreen("You must connect to a robot first.");
     return;
   }
-  startFaceDetection();
+  // startFaceDetection();
   client.PostCommand("drive", JSON.stringify(driveArgs));
 };
 
 stop.onclick = function() {
   client.PostCommand("drive/stop");
-  stopFaceDetection();
+  // stopFaceDetection();
 };
 
+stop.onclick = function() {
+  client.PostCommand("drive/stop");
+  // stopFaceDetection();
+};
+
+////////////
+function right180(){
+    printToScreen("right 180");
+}
+
+
+////////////////////////////////////////////////////////////////
+/////////////////////////////////////helper functions//////////////
+function printToScreen(msg) {
+  resultsBox.innerHTML += (msg + "\r\n");
+}
+
+///////////////////Testing out Face detection
+////you have to use JSON.stringify to convert js values into JSON string
 function startFaceDetection() {
     //Create a new websocket, if one is not already open
     socket = socket ? socket : new WebSocket("ws://" + ip + "/pubsub");
@@ -87,27 +127,8 @@ function startFaceDetection() {
     };
 }
 
-function validateIPAddress(ip) {
-  var ipNumbers = ip.split(".");
-  var ipNums = new Array(4);
-  if (ipNumbers.length !== 4) {
-    return "";
-  }
-  for (let i = 0; i < 4; i++) {
-    ipNums[i] = parseInt(ipNumbers[i]);
-    if (ipNums[i] < 0 || ipNums[i] > 255) {
-    return "";
-    }
-  }
-  return ip;
-}
-
 function stopFaceDetection() {
   client.PostCommand("beta/faces/detection/stop");
   printToScreen("Face detection stopped.");
   socket.close();
-}
-
-function printToScreen(msg) {
-  resultsBox.innerHTML += (msg + "\r\n");
 }

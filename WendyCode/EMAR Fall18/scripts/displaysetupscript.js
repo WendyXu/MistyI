@@ -8,7 +8,7 @@ var chosenImage = document.getElementById("myImage");
 var chosenText = "Add Text Here";
 
 function loadImage() {
-	chosenImage.src = "img/mistyi_photo_closeup.jpg";
+	chosenImage.src = "img/ContentMistyPicture_textup_blank.png";
 }
 
 /////////////////////////HELPER SET TEXT AND IMAGE VARIABLES///////
@@ -53,11 +53,11 @@ function addText(text) {
 	context.font = "30px Arial";
 	context.textAlign = "center";
 	context.textBaseline = "middle";
-	context.fillStyle = "black";
+	/* context.fillStyle = "red";
 	context.rect(x - w / 2, y - h / 2, w, h);
-	context.fill();
-	context.fillStyle = "red";
-	context.fillText(text, x, y);
+	context.fill(); */
+	context.fillStyle = "white";
+	context.fillText(text, x, y/2);
 }
 
 ////////////////////////////////////DOWNLOAD IMAGE/////////////////////////////////
