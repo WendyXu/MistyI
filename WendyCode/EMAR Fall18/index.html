@@ -15,14 +15,20 @@
             <p> Remember Misty must not be left unplugged with low battery. Battery needs to be above 7.5V for all motors to function. </p>
 			<!-- 192.168.2.13 -->
             <div>
-				<h3>Connect to Robot: </h3>
-				<input type="text" id="ip-address" placeholder="IP Address" required />
+				<h3>Connect to Robot: 192.168.2.13</h3>
+				<input type="text" id="ip-address" placeholder="IP Address" value= "192.168.2.13" required />
 					<button type="button" id="connect">Connect</button>
 			</div>
 
 <!-- 			<h3>Console: </h3>
 			<textarea id="results"></textarea> -->
 		
+            <!-- LED-->
+			<h2>LED Control</h2>
+            <p> Chose Color:  
+                <input type="color" id="LEDcolorPicker" value= "#ff0000"> 
+				<button type="button" id="changeLED" onclick="setLEDColor()" > Change LED Color</button>
+            </p>    
 		
 			<!-- Expression Generator/Setup -->
 			<h2>Expression Generator/Setup: </h2>
@@ -34,14 +40,14 @@
 
                             <canvas id="mainCanvas"></canvas>
 
-                            <a id="download" download="myImage.jpg" href="" onclick="downloadImage(this);">Download image</a>
+                            <!-- <a id="download" download="myImage.jpg" href="" onclick="downloadImage(this);">Download image</a> -->
                             
                 </div>
 			</div>
             
             <div>
-                <p> todo, show uploaded? (in remote control)</p>
-                
+                <p>   ChangeDisplayImage SaveImageAssetToRobot DeleteImageAssetFromRobot </p>
+                <!-- https://docs.mistyrobotics.com/apis/api-reference/all-functions/#images-amp-display -->
                 <input type="button" id="UploadToMisty" onclick="UploadToMisty()" value="UploadToMisty">
                 <input type="button" id="UploadToMisty" onclick="UploadToMisty()" value="Delete from misty">
             </div>
@@ -53,8 +59,8 @@
 			</div>
             
             
-			<div class="imageGallery">
-                <div id="imageButtons">
+			<!-- <div class="imageGallery"> -->
+                <div class="gallery"  id="imageButtons">
 
                     <img src="img/raw/Angry.jpg" class="chosenImages" alt="" onclick="setImage(this)">
                     <img src="img/raw/Love.jpg" class="chosenImages" alt="" onclick="setImage(this)">
@@ -64,26 +70,48 @@
                     
                             
                 </div>
-			</div>
+			<!-- </div> -->
             
             </div>
+            
 			
 			<!-- Face WoZ-->
 			<h2>Expression Display Control</h2>
+		
+            
+            <p> to do: delete images </p>
+            <h3> Available images </h3>
+                <p> Below are the image currently available to display on Misty. Set the display duration and click on a picture to display. *After timeout, refers back to "blank stare." Clicking one after another, will overlap the previous. </p>
+                <label for= "durationTextBox" > Display Duration: </label>
+                <input type="text" name="duration" id="durationTextBox" onchange="setDisplayDuration()" value = "5">
+                    
+            <h3>Console: </h3>
+			<textarea id="results"></textarea>
+            <div class="gallery" id="AvailableImagesGallery">
+                <p id="ImageStatus" > TODO: Currently Static. Ideally Dynamic (hidden when connected) No images available. Connect to robot. </p>
+                
+                <img src="img/raw/Love.jpg" class="displayImages" alt="" id="test" onclick="displayImage(this)">
+          
+                <img src="img/raw/Sad.jpg" class="displayImages" alt="" id="test" onclick="displayImage(this)">
+            </div>
+
 			
 			<!-- Movement WoZ-->
 			<h2>Movement Control</h2>
-            
-            <div id="command">
-				<p>Have Misty turn in a circle</p>
+            <div class="gallery" id="command">
 				<button type="button" id="start">Start turning left </button>
-                <button type="button" id="right180" onclick="right180()" >Turn right 180</button>
+                <button type="button" id="right180" onclick="rightquickbit()" >Turn right a bit</button>
+                <button type="button" id="lookdown" onclick="lookDown()">Look down</button>
+                <button type="button" id="lookdown" onclick="lookDown()">Look up</button>
+                <button type="button" id="lookdown" onclick="lookDown()">Nod. HEAD not working?!</button>
+                <button type="button" id="lookdown" onclick="lookDown()">Forward</button>
+                <button type="button" id="lookdown" onclick="lookDown()">Backward</button>
+                <button type="button" id="wiggle" onclick="wiggle()">Wiggle? Dances?</button>
 				<button type="button" id="stop">Stop moving</button>
+                
+                
 			</div>
             
-            <h3>Console: </h3>
-			<textarea id="results"></textarea>
-		
 			<!-- Sample -->
 			<h2>MISC: </h2>
 			<!-- <h3>Command: </h3> -->

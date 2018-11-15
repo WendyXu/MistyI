@@ -31,7 +31,11 @@ input[type="text"] {
 	font-family: Courier;
 	height: 2.5em;
 	padding-left: 1em;
-  width: 20em;
+    width: 20em;
+}
+
+input[type="text"]#durationTextBox {
+    width: 2em;
 }
 
 p {
@@ -49,14 +53,14 @@ textarea {
 }
 
 /* General area */
-#command {
+/* #command {
   background-color: #e5dfd7;
   font-family: Helvetica, Arial, sans-serif;
   margin: 0.5em 0 1em 0;
   min-height: 8em;
   padding: 0.5em;
   width: 100%;
-}
+} */
 
 #page-wrapper {
   background: #FFF;
@@ -101,4 +105,22 @@ button {
 button:hover {
   cursor: pointer;
   opacity: 0.5;
+}
+
+
+/* Image Gallery */
+
+.gallery {
+  background-color: #e5dfd7;
+  font-family: Helvetica, Arial, sans-serif;
+  margin: 0.5em 0 1em 0;
+  min-height: 8em;
+  padding: 0.5em;
+  width: 100%;
+}
+
+/* add chosenImages later */
+.displayImages, .chosenImages{
+    width: 6em;
+    margin: 0.5em 0;
 }

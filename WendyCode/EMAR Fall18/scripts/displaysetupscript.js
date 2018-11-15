@@ -20,7 +20,7 @@ function setImage(filename) {
 	chosenImage.src = filename.src;
 	console.log(chosenImage);
 }
-
+////These two above and below are same results....
 function setText() {
 	
 	var textBox = document.getElementById("chosenTextBox");
@@ -59,6 +59,8 @@ function addText(text) {
 	context.fillStyle = "white";
 	context.fillText(text, x, y/2);
 }
+
+
 
 ////////////////////////////////////DOWNLOAD IMAGE/////////////////////////////////
 /*Allows user to download the image in variable element*/

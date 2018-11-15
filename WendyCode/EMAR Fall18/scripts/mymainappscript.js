@@ -31,6 +31,8 @@ var message = JSON.stringify(msg);
 var messageCount = 0;
 var socket;
 
+var displayduration =5;
+
 /////////////////////////////////////////
 ////**** Function is called, return value will end up in var
 // Below trying out new way to do button clicks... 
@@ -64,7 +66,49 @@ function validateIPAddress(ip) {
   return ip;
 }
 
-////////////////////movement control
+//////////////////LED #ff0000
+
+function setLEDColor(){
+    checkIP();
+    var colorpicker = document.getElementById("LEDcolorPicker");
+    
+	chosencolor =colorpicker.value;
+	console.log("Displaying: \"" + chosencolor + "\"");
+    printToScreen("LED color: "+ chosencolor);
+    r = hexToRgb(chosencolor).r;
+    g = hexToRgb(chosencolor).g;
+    b = hexToRgb(chosencolor).b;
+    printToScreen("LED color: "+ r);
+/* 
+        let data = {
+            "red": 255, r
+            "green": 0, g
+            "blue": 0 b
+        };
+ */
+    
+    //why is this so different???
+    client.PostCommand("drive", JSON.stringify(driveArgs));
+    //axios.post("http://" + ip + "/api/led/change", data)
+	
+//https://docs.mistyrobotics.com/onboarding/creating-skills/writing-skill/#tutorial-1-changing-misty-s-led
+    client.PostCommand("led/change", JSON.stringify({"Red":255,"Green":0,"Blue":0}));
+    /////something is wrong here....
+}
+
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
+}
+
+//alert( hexToRgb("#0033ff").g ); // "51";
+
+////////////////////////////////////////////////////////////////
+////////////////////MOVEMENT CONTROL
 
 start.onclick = function() {
   if (!ip) {
@@ -72,23 +116,72 @@ start.onclick = function() {
     return;
   }
   // startFaceDetection();
+  printToScreen("Left turning");
   client.PostCommand("drive", JSON.stringify(driveArgs));
 };
 
-stop.onclick = function() {
-  client.PostCommand("drive/stop");
-  // stopFaceDetection();
-};
 
 stop.onclick = function() {
+  printToScreen("Stopping");
   client.PostCommand("drive/stop");
   // stopFaceDetection();
 };
 
 ////////////
-function right180(){
-    printToScreen("right 180");
+function rightquickbit(){
+    
+    var rightquickbitdriveArgs = {
+      "LinearVelocity": 0,
+      "AngularVelocity": -25,
+      "TimeMs":500
+    
+      };
+    printToScreen("Quickly right a bit" + JSON.stringify(rightquickbitdriveArgs));
+    client.PostCommand("drive/time", JSON.stringify(rightquickbitdriveArgs));
+
 }
+
+function wiggle(){
+    printToScreen("Wiggle");
+
+    client.PostCommand("drive/time", JSON.stringify({"LinearVelocity":0,"AngularVelocity":-25,"TimeMs":500}));
+    client.PostCommand("drive/time", JSON.stringify({"LinearVelocity":0,"AngularVelocity":25,"TimeMs":1000}));
+    client.PostCommand("drive/time", JSON.stringify({"LinearVelocity":0,"AngularVelocity":-25,"TimeMs":500}));
+
+}
+
+// look slightly down
+function lookDown(){
+    printToScreen("Look down");
+    client.PostCommand("beta/head/move", "{ \"Pitch\": \"1\", \"Velocity\": \"10\" }");
+
+}
+
+////////////////////////////////////////////////////////////////
+///////////////////IMAGE MANIPULATION
+
+function setDisplayDuration(){
+    displayduration =  document.getElementById("durationTextBox").value;
+    printToScreen(displayduration);
+    
+    
+}
+//parameter filename...?
+function displayImage(image){
+    checkIP();
+    printToScreen(image.src);
+    mysrc = image.src;
+    client.PostCommand("images/change",JSON.stringify({"FileName":"Angry.jpg","TimeoutSeconds":displayduration,"Alpha":1}));
+  ///////////////////// SOMETHING WRONG HERE.  
+    client.PostCommand("images/change",JSON.stringify({"FileName":image.src,"TimeoutSeconds":displayduration,"Alpha":1}));
+client.PostCommand("images/change",JSON.stringify({"FileName":mysrc,"TimeoutSeconds":displayduration,"Alpha":1}));
+
+        
+}
+
+
+
+
 
 
 ////////////////////////////////////////////////////////////////
@@ -97,6 +190,11 @@ function printToScreen(msg) {
   resultsBox.innerHTML += (msg + "\r\n");
 }
 
+function checkIP(){
+  if (!ip) {
+    printToScreen("IP Missing. Connect to robot first.");
+  }
+}
 ///////////////////Testing out Face detection
 ////you have to use JSON.stringify to convert js values into JSON string
 function startFaceDetection() {
