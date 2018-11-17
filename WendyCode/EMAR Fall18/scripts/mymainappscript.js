@@ -71,7 +71,7 @@ function validateIPAddress(ip) {
 function setLEDColor(){
     checkIP();
     var colorpicker = document.getElementById("LEDcolorPicker");
-    
+    //document.getElementById("LEDcolorPicker").value
 	chosencolor =colorpicker.value;
 	console.log("Displaying: \"" + chosencolor + "\"");
     printToScreen("LED color: "+ chosencolor);
@@ -94,6 +94,11 @@ function setLEDColor(){
 //https://docs.mistyrobotics.com/onboarding/creating-skills/writing-skill/#tutorial-1-changing-misty-s-led
     client.PostCommand("led/change", JSON.stringify({"Red":255,"Green":0,"Blue":0}));
     /////something is wrong here....
+    //try upper and lowercase. 
+    //use breakpoints
+    
+    //promise/ wrapy clien post command,s when return, then knows something is done.  
+    
 }
 
 function hexToRgb(hex) {
@@ -170,13 +175,23 @@ function setDisplayDuration(){
 function displayImage(image){
     checkIP();
     printToScreen(image.src);
-    mysrc = image.src;
+    var mysrc = image.src;
     client.PostCommand("images/change",JSON.stringify({"FileName":"Angry.jpg","TimeoutSeconds":displayduration,"Alpha":1}));
   ///////////////////// SOMETHING WRONG HERE.  
+  
+  ////test this!!! AGAIN
+  
+  //file:///C:/Users/WuKong/Documents/MistyI/WendyCode/EMAR%20Fall18/img/raw/Love.jpg LOOK for last slash!!!parse findLast
     client.PostCommand("images/change",JSON.stringify({"FileName":image.src,"TimeoutSeconds":displayduration,"Alpha":1}));
 client.PostCommand("images/change",JSON.stringify({"FileName":mysrc,"TimeoutSeconds":displayduration,"Alpha":1}));
 
-        
+     // function myFunction() {
+    // var str = "Hello planet earth, you are a great planet.";
+    // var n = str.lastIndexOf("\");
+    
+    // newvar = substring n+1 to the stringend
+    // document.getElementById("demo").innerHTML = n;
+}   
 }
 
 
@@ -200,6 +215,7 @@ function checkIP(){
 function startFaceDetection() {
     //Create a new websocket, if one is not already open
     socket = socket ? socket : new WebSocket("ws://" + ip + "/pubsub");
+    //  ternary operator condition ? true action: false action O_o
     //When the socket is open, send the message
     socket.onopen = function(event) {
       printToScreen("WebSocket opened.");
