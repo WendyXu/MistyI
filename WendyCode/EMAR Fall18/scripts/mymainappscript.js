@@ -76,23 +76,75 @@ function setLEDColor(){
     r = hexToRgb(chosencolor).r;
     g = hexToRgb(chosencolor).g;
     b = hexToRgb(chosencolor).b;
-    //printToScreen("LED color: "+ r);
-
-    client.PostCommand("led/change", JSON.stringify({"Red":r,"Green":g,"Blue":b}));
+    //client.PostCommand("led/change", JSON.stringify({"Red":r,"Green":g,"Blue":b}));
     
-    //Attempting a promise here:
-    // wrap clien post command,s when return, then knows something is done.  
-    
-    
-    promise {
+    //Attempting a promise here:        
+    var confirmLEDpromise = new Promise(function(resolve, reject) {
         client.PostCommand("led/change", JSON.stringify({"Red":r,"Green":g,"Blue":b}));
+    });
+    
+/*     confirmLEDpromise.then(function(result){
+        printToScreen(result);
+        printToScreen("Inside promise.then");
+    //this is not working
+    }); */
+    //How do I test a fail? 
+        //confirmLEDpromise.then(printToScreen("Inside promise.then")); //this works
+        //confirmLEDpromise.then(printToScreen(value)); //this doesn't working
+        confirmLEDpromise.then(printToScreen(result)); //this doesn't working
+        
+     /* function checkDefaultGroupForOptions() {
+    // Get usersInfo to get userid
+    var getUsersInfoPromise = new Promise(function(resolve, reject) {
+        odkData.getUsers(resolve, reject);
+    });
+
+    getUsersInfoPromise.then(function(result) {
+        var users = [];
+        users = result.getUsers();
+
+        if (users.length == 1) {
+            indexUserId = users[0].user_id;
+        }
+
+        return new Promise(function(resolve, reject) {
+            odkData.getDefaultGroup(resolve, reject);
+        });
+
+    }).then(
+    
+    function (result) {
+        var defGrp = result.getDefaultGroup();
+        if (defGrp !== null && defGrp !== undefined) {
+            var body = $('#main');
+            body.css('background-image', 'url(img/bw-business-bubble.jpg)');
+            if (util.ADMIN_DEFAULT_GROUPS.indexOf(defGrp) > -1)
+            {
+                initCoordinatorButton();
+            } else {
+                if (util.checkValidAgentDefaultGroup(defGrp)) {
+                    indexDefaultGroup = defGrp;
+                    initAgentButton();
+                } else {
+                    $('#login-text').text('Invalid agent default group.')
+                }
+            }
+
+        } else {
+            $('#login-text').text('You must login to use eKichabi.')
+            // TODO: Show login button to launch sync
+        }
 
     }
     
-    promise.then{function()}{
-        
-        
-    }
+    
+    ).catch(function(error) {
+        console.log('Could not get default group or userid for user: ' + error);
+        $('#login-text').text('Error getting default group or userid.  User must have a default group and valid userid to use eKichabi.')
+    }); 
+} 
+*/
+    
 }
 
 function hexToRgb(hex) {
@@ -158,7 +210,6 @@ function lookDown(){
 
 ////////////////////////////////////////////////////////////////
 ///////////////////IMAGE MANIPULATION
-
 function setDisplayDuration(){
     displayduration =  document.getElementById("durationTextBox").value;
     printToScreen(displayduration);
