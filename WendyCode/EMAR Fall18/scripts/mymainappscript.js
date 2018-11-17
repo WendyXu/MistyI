@@ -66,39 +66,33 @@ function validateIPAddress(ip) {
   return ip;
 }
 
-//////////////////LED #ff0000
-
+//////////////////LED
 function setLEDColor(){
     checkIP();
-    var colorpicker = document.getElementById("LEDcolorPicker");
-    //document.getElementById("LEDcolorPicker").value
-	chosencolor =colorpicker.value;
+
+	chosencolor =document.getElementById("LEDcolorPicker").value;
 	console.log("Displaying: \"" + chosencolor + "\"");
     printToScreen("LED color: "+ chosencolor);
     r = hexToRgb(chosencolor).r;
     g = hexToRgb(chosencolor).g;
     b = hexToRgb(chosencolor).b;
-    printToScreen("LED color: "+ r);
-/* 
-        let data = {
-            "red": 255, r
-            "green": 0, g
-            "blue": 0 b
-        };
- */
+    //printToScreen("LED color: "+ r);
+
+    client.PostCommand("led/change", JSON.stringify({"Red":r,"Green":g,"Blue":b}));
     
-    //why is this so different???
-    client.PostCommand("drive", JSON.stringify(driveArgs));
-    //axios.post("http://" + ip + "/api/led/change", data)
-	
-//https://docs.mistyrobotics.com/onboarding/creating-skills/writing-skill/#tutorial-1-changing-misty-s-led
-    client.PostCommand("led/change", JSON.stringify({"Red":255,"Green":0,"Blue":0}));
-    /////something is wrong here....
-    //try upper and lowercase. 
-    //use breakpoints
+    //Attempting a promise here:
+    // wrap clien post command,s when return, then knows something is done.  
     
-    //promise/ wrapy clien post command,s when return, then knows something is done.  
     
+    promise {
+        client.PostCommand("led/change", JSON.stringify({"Red":r,"Green":g,"Blue":b}));
+
+    }
+    
+    promise.then{function()}{
+        
+        
+    }
 }
 
 function hexToRgb(hex) {

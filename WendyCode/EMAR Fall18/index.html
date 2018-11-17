@@ -14,7 +14,7 @@
 			<h1>Misty EMAR  Setup and Control</h1>
             <p> Remember Misty must not be left unplugged with low battery. Battery needs to be above 7.5V for all motors to function. </p>
 			<!-- 192.168.2.13 -->
-            <div>
+            <div id="IPsetup">
 				<h3>Connect to Robot: 192.168.2.13</h3>
 				<input type="text" id="ip-address" placeholder="IP Address" value= "192.168.2.13" required />
 					<button type="button" id="connect">Connect</button>
@@ -59,25 +59,25 @@
                 
 			</div>
             
-            <div id="styes">
+            <div id="textstyles">
             <p>   Image manipulation and changing text styles</p>
             <input type="button" id="" onclick="setText1()" value="Add Text in Style 1">
             <input type="button" id="" onclick="setText2()" value="Add Text in Style 2">
             <input type="button" id="" onclick="setText3()" value="Add Text in Style 3">
             
-            <div>
+            </div>
             
 			<!-- <div class="imageGallery"> -->
-                <div class="gallery"  id="imageButtons">
+            <div class="gallery"  id="imageButtons">
 
-                    <img src="img/raw/Angry.jpg" class="chosenImages" alt="" onclick="setImage(this)">
-                    <img src="img/raw/Love.jpg" class="chosenImages" alt="" onclick="setImage(this)">
-                    <img src="img/ContentMistyPicture_textup_blank.png" class="chosenImages" alt="" onclick="setImage(this)">
-                    <img src="img/mistyi_photo_closeup.jpg" class="chosenImages" alt="" onclick="setImage(this)">
-                    <img src="img/facetable.png" onclick="setImage(this)">
-                    
-                            
-                </div>
+                <img src="img/raw/Angry.jpg" class="chosenImages" alt="" onclick="setImage(this)">
+                <img src="img/raw/Love.jpg" class="chosenImages" alt="" onclick="setImage(this)">
+                <img src="img/ContentMistyPicture_textup_blank.png" class="chosenImages" alt="" onclick="setImage(this)">
+                <img src="img/mistyi_photo_closeup.jpg" class="chosenImages" alt="" onclick="setImage(this)">
+                <img src="img/facetable.png" onclick="setImage(this)">
+                
+                        
+            </div>
 			<!-- </div> -->
             
             </div>
@@ -85,7 +85,7 @@
 			
 			<!-- Face WoZ-->
 			<h2>Expression Display Control</h2>
-		
+            <div id="expressiondisplaycontrol">
             
             <p> to do: delete images </p>
             <h3> Available images </h3>
@@ -104,7 +104,7 @@
                 <img src="img/raw/Sad.jpg" class="displayImages" alt="" id="test" onclick="displayImage(this)">
             </div>
 
-			
+			</div> 
 			<!-- Movement WoZ-->
 			<h2>Movement Control</h2>
             <div class="gallery" id="command">
