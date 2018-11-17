@@ -191,7 +191,7 @@ client.PostCommand("images/change",JSON.stringify({"FileName":mysrc,"TimeoutSeco
     
     // newvar = substring n+1 to the stringend
     // document.getElementById("demo").innerHTML = n;
-}   
+//}   
 }
 
 
