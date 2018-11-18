@@ -91,7 +91,7 @@ function setLEDColor(){
     //How do I test a fail? 
         //confirmLEDpromise.then(printToScreen("Inside promise.then")); //this works
         //confirmLEDpromise.then(printToScreen(value)); //this doesn't working
-        confirmLEDpromise.then(printToScreen(result)); //this doesn't working
+        //confirmLEDpromise.then(printToScreen(result)); //this doesn't working
         
      /* function checkDefaultGroupForOptions() {
     // Get usersInfo to get userid
@@ -219,24 +219,12 @@ function setDisplayDuration(){
 //parameter filename...?
 function displayImage(image){
     checkIP();
-    printToScreen(image.src);
-    var mysrc = image.src;
-    client.PostCommand("images/change",JSON.stringify({"FileName":"Angry.jpg","TimeoutSeconds":displayduration,"Alpha":1}));
-  ///////////////////// SOMETHING WRONG HERE.  
-  
-  ////test this!!! AGAIN
-  
-  //file:///C:/Users/WuKong/Documents/MistyI/WendyCode/EMAR%20Fall18/img/raw/Love.jpg LOOK for last slash!!!parse findLast
-    client.PostCommand("images/change",JSON.stringify({"FileName":image.src,"TimeoutSeconds":displayduration,"Alpha":1}));
-client.PostCommand("images/change",JSON.stringify({"FileName":mysrc,"TimeoutSeconds":displayduration,"Alpha":1}));
+    var index = image.src.lastIndexOf("/"); //This give me the index afterwhich the filenames starts
+    var myfile = image.src.substring(index+1);
+    printToScreen("Post image/change: " +myfile);
 
-     // function myFunction() {
-    // var str = "Hello planet earth, you are a great planet.";
-    // var n = str.lastIndexOf("\");
-    
-    // newvar = substring n+1 to the stringend
-    // document.getElementById("demo").innerHTML = n;
-//}   
+    client.PostCommand("images/change",JSON.stringify({"FileName":myfile,"TimeoutSeconds":displayduration,"Alpha":1}));
+    //client.PostCommand("images/change",JSON.stringify({"FileName":"Angry.jpg","TimeoutSeconds":displayduration,"Alpha":1}));
 }
 
 
