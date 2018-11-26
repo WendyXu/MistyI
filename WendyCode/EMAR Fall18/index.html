@@ -3,18 +3,11 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Misty EMAR  Setup and Control</title>
-        <!-- SCRIPTS -->
-		<script src="scripts/mymainappscript.js"></script>
-		<script src="scripts/displaysetupscript.js"></script>
-		<script src="scripts/tab.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="scripts/lightClient.js"></script>
 		<script src="scripts/lightSocket.js"></script>
-        <!-- Stylesheets-->
 		<link rel="stylesheet" href="styles/mainstyle.css">
         <link rel="stylesheet" href="styles/displaysetupstyle.css">
-        <!-- <link rel="stylesheet" href="styles/tab.css"> -->
-
 	</head>
 	<body onload="loadImage()">
 		<div id="page-wrapper">
@@ -27,23 +20,13 @@
 					<button type="button" id="connect">Connect</button>
 			</div>
 
-            <h3>Console: </h3>
-			<textarea id="results"></textarea>
-            
-            <!-- Tab links -->
-            <div class="tab">
-              <button class="tablinks" onclick="openCity(event, 'APIDemo')">API Functions Demo</button>
-              <button class="tablinks" onclick="openCity(event, 'ContentManagement')">Content Management</button>
-              <button class="tablinks" onclick="openCity(event, 'RemoteControl')">Remote Control</button>
-            </div>
-            
-            
-            <div id="APIDemo" class="tabcontent">
-            
-            <p>not here yet</p>
-            </div>
-            
-            <div id="ContentManagement" class="tabcontent">
+            <!-- LED-->
+			<h2>LED Control</h2>
+            <p> Chose Color:  
+                <input type="color" id="LEDcolorPicker" value= "#02ffe1"> 
+				<button type="button" id="changeLED" onclick="setLEDColor()" > Change LED Color</button>
+            </p>    
+		
 			<!-- Expression Generator/Setup -->
 			<h2>Expression Generator/Setup: </h2>
             <div id="Expression Gen">
@@ -95,15 +78,9 @@
 			<!-- </div> -->
             
             </div>
-            </div>
             
-            <div id="RemoteControl" class="tabcontent">
-            <!-- LED-->
-			<h2>LED Control</h2>
-            <p> Chose Color:  
-                <input type="color" id="LEDcolorPicker" value= "#02ffe1"> 
-				<button type="button" id="changeLED" onclick="setLEDColor()" > Change LED Color</button>
-            </p>    
+            <h3>Console: </h3>
+			<textarea id="results"></textarea>
 		
 			
 			<!-- Face WoZ-->
@@ -144,9 +121,6 @@
                 
 			</div>
             
-            </div>
-            
-            
 			<!-- Sample -->
 			<h2>MISC: </h2>
 			<!-- <h3>Command: </h3> -->
@@ -158,6 +132,8 @@
 			
 		
 		</div>
-
+		<!-- SCRIPTS -->
+		<script src="scripts/mymainappscript.js"></script>
+		<script src="scripts/displaysetupscript.js"></script>
 	</body>
 </html>
