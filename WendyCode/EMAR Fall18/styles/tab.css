@@ -24,6 +24,10 @@
     background-color: #ddd;
 }
 
+#mainTab{
+    background-color: #000;
+}
+
 /* Create an active/current tablink class */
 .tab button.active {
     background-color: #000;
@@ -40,3 +44,4 @@
 #APIDemo{
     display: block ;
 }
+
